@@ -4,6 +4,7 @@ using System.Data;
 using System.Transactions;
 using UnityEngine;
 using DG.Tweening;
+using System.Security.Claims;
 
 public class Player : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= jumpCoolTime)
             canJump = true;
+        StartCoroutine(clamp());
         if (canJump && Input.GetKey(KeyCode.Space))
         {
             StartCoroutine(jump());
@@ -47,20 +49,14 @@ public class Player : MonoBehaviour
 
         if(Input.GetKey(KeyCode.D))
         {
-            transform.DOMoveX(currentPos.x + 1f, moveTime).SetEase(Ease.OutQuad);
+            transform.DOMoveX(currentPos.x + 0.8f, moveTime).SetEase(Ease.OutQuad);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.DOMoveX(currentPos.x - 1f, moveTime);
+            transform.DOMoveX(currentPos.x - 0.8f, moveTime);
         }
 
-        currentPosX = Mathf.Clamp(currentPos.x, limitMin.x, limitMax.x);
-
-        currentPosX = Mathf.Clamp(currentPos.x, limitMin.x, limitMax.x);
-
-        currentPos = new Vector2(currentPosX, currentPosY);
-        transform.localPosition = currentPos;
     }
 
     IEnumerator jump()
@@ -71,5 +67,15 @@ public class Player : MonoBehaviour
         yield return 0;
     }
 
+    IEnumerator clamp()
+    {
+        currentPosX = Mathf.Clamp(currentPos.x, limitMin.x, limitMax.x);
 
+        currentPosY = Mathf.Clamp(currentPos.y, limitMin.y, limitMax.y);
+
+        currentPos = new Vector2(currentPosX, currentPosY);
+        transform.localPosition = currentPos;
+
+        yield return 0;
+    }
 }
