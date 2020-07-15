@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     float currentPosX = 0;
     float currentPosY = 0;
 
+    Animator animator = null;
+
     [SerializeField]
     float jumpPower = 0;
     [SerializeField]
@@ -31,30 +33,32 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rigid = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        animator.Play("Player_Idel");
         currentPos = transform.localPosition;
         timer += Time.deltaTime;
         if (timer >= jumpCoolTime)
             canJump = true;
         StartCoroutine(clamp());
-        if (canJump && Input.GetKey(KeyCode.Space))
+        if (canJump && Input.GetKey(KeyCode.Space)) // 쿨타임이 다 찼을 때 점프가 가능하게 해줌
         {
             StartCoroutine(jump());
             currentPos = transform.localPosition;
         }
 
-        if(Input.GetKey(KeyCode.D))
+        if(Input.GetKey(KeyCode.D)) // 키 입력 받으면 오른쪽으로 움직임
         {
             transform.DOMoveX(currentPos.x + 0.8f, moveTime).SetEase(Ease.OutQuad);
             currentPos = transform.localPosition;
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A)) // 키 입력 받으면 왼쪽으로 움직임
         {
             transform.DOMoveX(currentPos.x - 0.8f, moveTime);
             currentPos = transform.localPosition;
@@ -62,7 +66,7 @@ public class Player : MonoBehaviour
 
     }
 
-    IEnumerator jump()
+    IEnumerator jump() // 점프하는 코루틴
     {
         transform.DOLocalJump(new Vector3(currentPos.x, -4.61f, 0f), jumpPower, 1, 0.5f);
         timer = 0f;
