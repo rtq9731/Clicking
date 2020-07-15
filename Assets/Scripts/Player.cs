@@ -45,23 +45,26 @@ public class Player : MonoBehaviour
         if (canJump && Input.GetKey(KeyCode.Space))
         {
             StartCoroutine(jump());
+            currentPos = transform.localPosition;
         }
 
         if(Input.GetKey(KeyCode.D))
         {
             transform.DOMoveX(currentPos.x + 0.8f, moveTime).SetEase(Ease.OutQuad);
+            currentPos = transform.localPosition;
         }
 
         if (Input.GetKey(KeyCode.A))
         {
             transform.DOMoveX(currentPos.x - 0.8f, moveTime);
+            currentPos = transform.localPosition;
         }
 
     }
 
     IEnumerator jump()
     {
-        transform.DOLocalJump(new Vector3(currentPos.x, 0f, 0f), jumpPower, 1, 0.5f);
+        transform.DOLocalJump(new Vector3(currentPos.x, -4.61f, 0f), jumpPower, 1, 0.5f);
         timer = 0f;
         canJump = false;
         yield return 0;
