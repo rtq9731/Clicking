@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     float jumpCoolTime = 0;
     [SerializeField]
     float moveTime = 0;
+    [SerializeField]
+    float jumpTime = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
 
     IEnumerator jump() // 점프하는 코루틴
     {
-        transform.DOLocalJump(new Vector3(currentPos.x, -4.61f, 0f), jumpPower, 1, 0.5f);
+        transform.DOLocalJump(new Vector3(currentPos.x, -4.61f, 0f), jumpPower, 1, jumpTime);
         timer = 0f;
         canJump = false;
         yield return 0;
