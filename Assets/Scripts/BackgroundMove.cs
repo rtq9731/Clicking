@@ -3,21 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
+using UnityEngine.UIElements;
 
 public class BackgroundMove : MonoBehaviour
 {
     // Start is called before the first frame update
 
     [SerializeField]
-    float moveTime = 0;
+    private float moveTime = 0;
+    [SerializeField]
+    private float moveRadius = 0;
 
-    float time = Time.deltaTime;
-    Transform myPotision = null;
+    private float time = Time.deltaTime;
+    private Vector2 myPotision = Vector2.zero;
 
     void Start()
     {
-        myPotision = GetComponent<Transform>();
-        transform.DOMoveY(myPotision.x)
+        myPotision = transform.localPosition;
+
+        transform.DOMoveY(myPotision.y + moveRadius, moveTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
+        
     }
 
     // Update is called once per frame
