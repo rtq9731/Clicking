@@ -14,12 +14,14 @@ public class BackgroundMove : MonoBehaviour
     [SerializeField]
     private float moveRadius = 0;
 
-    private float time = Time.deltaTime;
     private Vector2 myPotision = Vector2.zero;
+
+    private float time;
 
     void Start()
     {
-        myPotision = transform.localPosition;
+        time = Time.deltaTime;
+    myPotision = transform.localPosition;
 
         transform.DOMoveY(myPotision.y + moveRadius, moveTime).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.Linear);
         
