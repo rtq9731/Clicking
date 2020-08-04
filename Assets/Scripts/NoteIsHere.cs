@@ -17,8 +17,6 @@ public class NoteIsHere : MonoBehaviour
     private float noteDelay;
 
     private float time;
-    private float noteNum;
-
     private GameObject[] colorButtons;
     // Start is called before the first frame update
     void Start()
@@ -34,19 +32,13 @@ public class NoteIsHere : MonoBehaviour
     void Update()
     {
         time = Time.deltaTime;
-        noteNum = UnityEngine.Random.Range(1f, 7f);
-    }
-
-    private IEnumerator MakeNote()
-    {
-        yield return new WaitForSeconds(noteDelay);
     }
 
     private IEnumerator startSpawn()
     {
         for (int i = 0; i < 6; i++)
         Instantiate(colorButtons[i], gameObject.transform );
-        yield return new WaitForSeconds(noteDelay);
+        yield return 0;
     }
 
 }

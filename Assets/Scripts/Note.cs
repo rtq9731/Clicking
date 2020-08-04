@@ -16,25 +16,29 @@ public class Note : MonoBehaviour
     private PoolManager poolManager = null;
     private float time;
     private float noteDelay;
+    private float noteCooldown;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        poolManager = FindObjectOfType<PoolManager>();  
-        gameObject.SetActive(false);
+        poolManager = FindObjectOfType<PoolManager>();
+        time = Time.deltaTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        noteDelay = UnityEngine.Random.Range(1f, 20f);
+        StartCoroutine(imInWork());
     }
 
     private IEnumerator imInWork()
     {
+        gameObject.SetActive(true);
+        noteDelay = UnityEngine.Random.Range(1f, 5f);
         if (Input.GetMouseButtonDown(0) == true)
         {
-            
+            gameManager.nScore += 30;
+            gameObject.SetActive(false);    
         }
 
         yield return new WaitForSeconds(noteDelay);
