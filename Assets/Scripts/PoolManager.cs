@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
+    
+    private enum NotePosition
+    {
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {

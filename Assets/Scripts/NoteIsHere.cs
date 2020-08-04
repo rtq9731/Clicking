@@ -5,38 +5,47 @@ using System.Runtime.InteropServices.ComTypes;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
 
-public class Note : MonoBehaviour
+public class NoteIsHere : MonoBehaviour
 {
 
     private GameManager gameManager = null;
     private PoolManager poolManager = null;
-    private float time;
+
     private float noteDelay;
+
+    private float time;
+    private float noteNum;
+
+    private GameObject[] colorButtons;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        poolManager = FindObjectOfType<PoolManager>();  
-        gameObject.SetActive(false);
+        poolManager = FindObjectOfType<PoolManager>();
+        colorButtons = gameManager.colorButtons;
+
+        StartCoroutine(startSpawn());
     }
 
     // Update is called once per frame
     void Update()
     {
-        noteDelay = UnityEngine.Random.Range(1f, 20f);
+        time = Time.deltaTime;
+        noteNum = UnityEngine.Random.Range(1f, 7f);
     }
 
-    private IEnumerator imInWork()
+    private IEnumerator MakeNote()
     {
-        if (Input.GetMouseButtonDown(0) == true)
-        {
-            
-        }
+        yield return new WaitForSeconds(noteDelay);
+    }
 
+    private IEnumerator startSpawn()
+    {
+        for (int i = 0; i < 6; i++)
+        Instantiate(colorButtons[i], gameObject.transform );
         yield return new WaitForSeconds(noteDelay);
     }
 

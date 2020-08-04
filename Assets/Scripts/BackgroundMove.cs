@@ -16,6 +16,7 @@ public class BackgroundMove : MonoBehaviour
 
     private Vector2 myPotision = Vector2.zero;
 
+ 
     private float time;
 
     void Start()
