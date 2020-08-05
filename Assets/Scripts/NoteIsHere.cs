@@ -13,11 +13,10 @@ public class NoteIsHere : MonoBehaviour
 
     private GameManager gameManager = null;
     private PoolManager poolManager = null;
-
-    private float noteDelay;
-
-    private float time;
     private GameObject[] colorButtons;
+    
+    private float time;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +35,7 @@ public class NoteIsHere : MonoBehaviour
 
     private IEnumerator startSpawn()
     {
-        for (int i = 0; i < 6; i++)
+        for(int i = 0; i < 1; i++)
         Instantiate(colorButtons[i], gameObject.transform );
         yield return 0;
     }

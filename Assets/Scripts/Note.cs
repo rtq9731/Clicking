@@ -17,30 +17,44 @@ public class Note : MonoBehaviour
     private float time;
     private float noteDelay;
     private float noteCooldown;
+    private float distance = 0f;
+
+    [SerializeField]
+    protected float collideDistance = 0.1f;
+
+    private GameObject target;
+    private MousePoint mousePointer = null;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         poolManager = FindObjectOfType<PoolManager>();
+        mousePointer = FindObjectOfType<MousePoint>();
         time = Time.deltaTime;
-        StartCoroutine(imInWork()); 
     }
 
     // Update is called once per frame
     void Update()
     {
-    }
 
-    private IEnumerator imInWork()
-    {
-        gameObject.SetActive(true);
-        noteDelay = UnityEngine.Random.Range(1f, 5f);
-        if (Input.GetMouseButtonDown(0) == true)
+        distance = Vector2.Distance(transform.position, mousePointer.myPosition);
+
+        if ( distance <= collideDistance)
         {
-            gameManager.nScore += 30;
-            gameObject.SetActive(false);    
+            if (Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("Pressed left click.");
+                gameManager.nScore += 30;
+                StartCoroutine(imInWork());
+                gameObject.SetActive(false);
+            }
         }
 
+    }
+    private IEnumerator imInWork()
+    {
+        noteDelay = UnityEngine.Random.Range(1f, 5f);
+        gameObject.SetActive(true);
         yield return new WaitForSeconds(noteDelay);
     }
 
