@@ -919,7 +919,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 654556606}
-  - component: {fileID: 654556607}
   m_Layer: 0
   m_Name: NotePosition1-1
   m_TagString: Untagged
@@ -941,18 +940,6 @@ Transform:
   m_Father: {fileID: 1197168014}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &654556607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 654556605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b876148fde36f449084615cf48b672, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &690339660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1709,7 +1696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797e62a844fa784478d0632e356f2e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  nScore: 0
   notePoss:
   - {fileID: 654556606}
   - {fileID: 262274592}

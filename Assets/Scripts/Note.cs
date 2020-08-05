@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
@@ -11,7 +12,6 @@ using UnityEngine.VFX;
 
 public class Note : MonoBehaviour
 {
-
     private GameManager gameManager = null;
     private PoolManager poolManager = null;
     private float time;
@@ -23,12 +23,12 @@ public class Note : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         poolManager = FindObjectOfType<PoolManager>();
         time = Time.deltaTime;
+        StartCoroutine(imInWork()); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(imInWork());
     }
 
     private IEnumerator imInWork()
