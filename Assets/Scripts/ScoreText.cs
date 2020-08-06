@@ -13,14 +13,12 @@ public class ScoreText : MonoBehaviour
 
     void Start()
     {
-        time += Time.deltaTime;
-        scoreText.text = string.Format("{0:N2}", time);
-
-
     }
 
     // Update is called once per frame
     void Update()
-    { 
+    {
+        time += Time.deltaTime;
+        scoreText.text = time.ToString("N2");
     }
 }

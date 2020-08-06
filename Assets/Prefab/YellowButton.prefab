@@ -95,4 +95,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2931893932fb9da45aafc1c5ddf77d49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collideDistance: 1
+  noteFalse: 0
+  collideDistance: 2
