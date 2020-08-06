@@ -14,6 +14,7 @@ public class ScoreText : MonoBehaviour
 
     void Start()
     {
+        time = 0;
     }
 
     // Update is called once per frame

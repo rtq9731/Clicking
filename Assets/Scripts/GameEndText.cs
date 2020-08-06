@@ -11,7 +11,7 @@ public class GameEndText : MonoBehaviour
     private Text text = null;
     void Start()
     {
-        text.DOText("걸린시간 " + ScoreText.time.ToString("N2") , 5);
+        text.DOText("걸린시간 " + ScoreText.time.ToString("N2") , 2);
     }
 
     // Update is called once per frame
