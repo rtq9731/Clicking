@@ -19,6 +19,8 @@ public class Note : MonoBehaviour
     private float noteCooldown;
     private float distance = 0f;
 
+    public int noteFalse = 0;
+
     [SerializeField]
     protected float collideDistance = 0.1f;
 
@@ -36,16 +38,15 @@ public class Note : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        StartCoroutine(imInWork());
         distance = Vector2.Distance(transform.position, mousePointer.myPosition);
 
         if ( distance <= collideDistance)
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Pressed left click.");
-                gameManager.nScore += 30;
-                StartCoroutine(imInWork());
+                noteFalse += 1;
+                Debug.Log("버튼 눌림");
                 gameObject.SetActive(false);
             }
         }
