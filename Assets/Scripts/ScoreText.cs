@@ -7,17 +7,20 @@ using UnityEngine.UI;
 public class ScoreText : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameManager gameManager = null;
     [SerializeField]
     private Text scoreText = null;
+    private float time;
+
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        time += Time.deltaTime;
+        scoreText.text = string.Format("{0:N2}", time);
+
+
     }
 
     // Update is called once per frame
     void Update()
-    {
-       scoreText.text = "Count: " + gameManager.time.ToString();
+    { 
     }
 }
