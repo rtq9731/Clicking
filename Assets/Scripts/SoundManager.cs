@@ -15,7 +15,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] Sound[] bgmSounds;
 
     [Header("BGM 플레이어")]
-    [SerializeField] AudioSource bgmPlayer;
+    [SerializeField] AudioSource bgmPlayer; 
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,7 @@ public class SoundManager : MonoBehaviour
     {
         int random = Random.Range(0, 1);
         bgmPlayer.clip = bgmSounds[random].clip;
+        bgmPlayer.volume = 0.2f;
         bgmPlayer.Play();
     }
 }
