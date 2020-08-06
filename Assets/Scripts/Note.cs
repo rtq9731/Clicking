@@ -19,8 +19,6 @@ public class Note : MonoBehaviour
     private float noteCooldown;
     private float distance = 0f;
 
-    public int noteFalse = 0;
-
     [SerializeField]
     protected float collideDistance = 0.1f;
 
@@ -45,7 +43,8 @@ public class Note : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                noteFalse += 1;
+                ++gameManager.noteFalse;
+                Debug.Log(gameManager.noteFalse);
                 Debug.Log("버튼 눌림");
                 gameObject.SetActive(false);
             }

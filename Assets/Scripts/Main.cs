@@ -15,14 +15,10 @@ public class Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(note.noteFalse == 16)
-        {
-            
-        }
     }
 
     public void Click()
     {
-        SceneManager.LoadScene (1);
+        SceneManager.LoadScene ("Main");
     }
 }

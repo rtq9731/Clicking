@@ -8,7 +8,8 @@ public class ScoreText : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    static Text scoreText = null;   
+    private Text scoreText = null;
+    
     public static float time;
 
     void Start()
